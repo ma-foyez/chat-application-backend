@@ -3,6 +3,8 @@ const socketio = require("socket.io");
 const http = require("http");
 const cors = require("cors")
 const port = 5000;
+require('dotenv').config()
+
 const { addUser, removeUser, getUserById, getRoomUsers } = require('./users')
 const app = express();
 app.use(cors())
@@ -61,4 +63,5 @@ app.get('/', (req, res) => {
   res.send("server is up and running");
 })
 
-server.listen(port, () => console.log(`Server has started on  port ${port}`));
+app.listen(process.env.PORT || port)
+
